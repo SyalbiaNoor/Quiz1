@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Homepage </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @import url('https://fonts.cdnfonts.com/css/superhelio');
+            body {background-color: #26014d;
+                background-image: url('stars.gif');
+            }
+            #loader {position: absolute;
+                left: 50%;
+                top: 50%;
+                z-index: 1;
+                width: 120px;
+                height: 120px;
+                margin: -76px 0 0 -76px;
+                background: url('roket2.gif');
+                background-size: 100%;
+            }
+            .animate-bottom {position: relative;
+                -webkit-animation-name: animatebottom;
+                -webkit-animation-duration: 1s;
+                animation-name: animatebottom;
+                animation-duration: 1s
+            }
+            @-webkit-keyframes animatebottom {from { bottom:-100px; opacity:0 } 
+                to { bottom:0px; opacity:1 }
+            }
+            @keyframes animatebottom {from{ bottom:-100px; opacity:0 } 
+                to{ bottom:0; opacity:1 }
+            }
+            #myDiv {display: none;
+                text-align: center;
+                background-color: #9e45b0c0;
+            }
+            .p1 {color:#ffe4f2;
+                font-size: 160%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                position: relative;
+                left: 20px;
+                opacity: 1;
+            }
+            .p2 {color:#ffe4f2;
+                font-size: 200%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                position: relative;
+                left: 20px;
+                opacity: 1;
+            }
+            .button {padding: 15px 70px;
+                font-size: 24px;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                color: #ffe4f2;
+                background-color: #362545;
+                border-top-right-radius: 10%;
+                border-color: #ffe4f2;
+                border-radius: 7px;
+                box-shadow: 0 6px #ffe4f2;
+            }
+            .button:hover {background-color: #362545
+            }
+            .button:active {background-color: #362545;
+                box-shadow: 0 3px #ffe4f2;
+                transform: translateY(4px);
+            }
+        </style>
+    </head>
+        
+     <body onload="myFunction()" style="margin:0;">
+        <div id="loader"> </div>
+        <div style="display:none;" id="myDiv" class="animate-bottom"; class="div1">
+            <pre> </pre>
+            <p class="p1"> Hello! I'm Syalbia! I'm going to be your captain for our space adventure! <br>
+                            We're going to our next stop in a few seconds. Please choose your <br>
+                            desired destination! </p>
+            <pre><a href="./profile"><button class="button">        Profile        </button></a>
+            <pre><a href="./hometown"><button class="button">      Hometown     </button></a>
+            <pre><a href="./food"><button class="button">       Culinary       </button></a>
+            <pre><a href="./tourist"><button class="button"> Tourist Attraction </button></a>
+            <pre> </pre>
+        </div>
+
+        <script>
+            var myVar;
+            function myFunction() {myVar = setTimeout(showPage, 1500);
+            }
+            function showPage() {document.getElementById("loader").style.display = "none";
+                document.getElementById("myDiv").style.display = "block";
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Tourist Attraction </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @import url('https://fonts.cdnfonts.com/css/superhelio');
+            body {background-color: #26014d;
+                background-image: url('stars.gif');
+            }
+            #loader {position: absolute;
+                left: 50%;
+                top: 50%;
+                z-index: 1;
+                width: 120px;
+                height: 120px;
+                margin: -76px 0 0 -76px;
+                background: url('roket2.gif');
+                background-size: 100%;
+            }
+            .animate-bottom {position: relative;
+                -webkit-animation-name: animatebottom;
+                -webkit-animation-duration: 1s;
+                animation-name: animatebottom;
+                animation-duration: 1s
+            }
+            @-webkit-keyframes animatebottom {from { bottom:-100px; opacity:0 } 
+                to { bottom:0px; opacity:1 }
+            }
+            @keyframes animatebottom {from{ bottom:-100px; opacity:0 } 
+                to{ bottom:0; opacity:1 }
+            }
+            #myDiv {display: none;
+            }
+            .overlay {height: 0%;
+                width: 100%;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: rgba(6, 0, 22, 0.788);
+                background-color: rgba(4, 0, 20, 0.9);
+                overflow-y: hidden;
+                transition: 0.5s;
+            }
+            .overlay-content {position: relative;
+                top: 25%;
+                width: 100%;
+                text-align: center;
+                margin-top: 30px;
+            }
+            .overlay a {padding: 8px;
+                text-decoration: none;
+                font-size: 30px;
+                color: #bda3b0; 
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                display: block;
+                transition: 0.3s;
+            }
+            .overlay a:hover, .overlay a:focus {color: #ffe4f2;
+            }
+            .overlay .closebtn {position: absolute;
+                top: 20px;
+                right: 45px;
+                font-size: 60px;
+            }
+            @media screen and (max-height: 450px) {.overlay {overflow-y: auto;}
+                .overlay a {font-size: 20px}
+                .overlay .closebtn {
+                    font-size: 40px;
+                    top: 15px;
+                    right: 35px;
+                }
+            }
+            h1 {color: #ffe4f2; 
+                font-size: 300%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                background-color: rgba(5, 0, 17, 0.288);
+            }
+            h2 {background-image: url('gunung.jpg'); 
+                background-size: 100%;
+                opacity: 1;
+            }
+            h3 {color:#ffe4f2;
+                font-family: 'superhelio _extended', sans-serif;
+                position: relative;
+                left: 20px;
+                opacity: 1;
+            }
+            h4 {color: #ffe4f2; 
+                font-size: 36px;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+            }
+            h5 {color:#ffe4f2;
+                font-size: 170%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                position: relative;
+                left: 20px;
+                opacity: 1;
+            }
+            h6 {color:#ffe4f2;
+                font-size: 140%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                text-align: left;
+            }
+            .div1 {background-color: #2f258abd;
+                opacity: 1;
+            }
+            .p1 {color:#ffe4f2;
+                font-size: 170%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                position: relative;
+                text-align: center;
+                left: 50px;
+                opacity: 1;
+            }
+            .p2 {color: #ffe4f2; 
+                font-size: 36px;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+            }
+            .p3 {color:#ffe4f2;
+                font-size: 100%;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                position: relative;
+                text-align: justify;
+                right: 20px;
+                opacity: 1;
+            }
+            .button1 {padding: 3px 5px;
+                font-size: 15px;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                text-align: left;
+                cursor: pointer;
+                outline: none;
+                color: #ffe4f2;
+                background-color: #362545;
+                border-top-right-radius: 10%;
+                border-color: #ffe4f2;
+                border-radius: 7px;
+                box-shadow: 0 6px #ffe4f2;
+            }
+            .button1:hover {background-color: #362545
+            }
+            .button1:active {background-color: #362545;
+                box-shadow: 0 3px #ffe4f2;
+                transform: translateY(4px);
+            }
+            .button2 {padding: 3px 5px;
+                font-size: 15px;
+                font-family: 'superhelio _extended_ultra', sans-serif;
+                text-align: right;
+                cursor: pointer;
+                outline: none;
+                color: #ffe4f2;
+                background-color: #362545;
+                border-top-right-radius: 10%;
+                border-color: #ffe4f2;
+                border-radius: 7px;
+                box-shadow: 0 6px #ffe4f2;
+            }
+            .button2:hover {background-color: #362545
+            }
+            .button2:active {background-color: #362545;
+                box-shadow: 0 3px #ffe4f2;
+                transform: translateY(4px);
+            }
+        </style>
+    </head>
+    
+    <body onload="myFunction()" style="margin:0;">
+        <div id="loader"></div>
+        <div style="display:none;" id="myDiv" class="animate-bottom">
+        <span style="font-size:30px; font-family: 'superhelio _extended_ultra'; color: #ffe4f2; cursor:pointer" onclick="openNav()">&#9776; Destination Map </span>
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <p class="p2">Going Somewhere Else?</p>
+                <a href="./profile"> Profile </a>
+                <a href="./hometown"> Hometown </a>
+                <a href="./food"> Culinary </a>
+                <a href="./tourist"> Tourist Attraction </a>
+            </div>
+            </div>
+
+            <h2>
+                <pre> </pre>
+                <center><h1> Where to Go in Bandung? </h1></center>  
+                <pre> </pre>
+            </h2>
+    
+            <div class="div1">
+                <pre> </pre>
+                <table style="width: 100%; text-align: center;">
+                    <tr>
+                        <td><h5> <img src="braga.png" width="85%" height="auto"> </h5></td>
+                        <td style="width: 50%; height: auto;"><h6>Braga City Walk </h6>
+                        <p class="p3"> Braga City Walk in Bandung is a lively district famous
+                        for its historical charm and contemporary attractions. This area 
+                        offers a mix of old-world architecture and modernamenities, making 
+                        it a popular spot for both locals and tourists. Visitors can explore 
+                        vintage buildings, dine at trendy restaurants, sip coffee in stylish 
+                        cafes, and enjoy a vibrant nightlife scene. It's a vibrant hub that 
+                        beautifully blends the past and present, making it a must-visit 
+                        when in Bandung. </p></td>
+                    </tr>
+                    <tr>
+                        <td><h5> <img src="cibaduyut.png" width="85%" height="auto"> </h5></td>
+                        <td><h6> Cibaduyut Street </h6>
+                        <p class="p3"> Cibaduyut Street in Bandung, Indonesia, is a well-known 
+                            hub for footwear and leather goods. It's often referred to as 
+                            "Cibaduyut Shoe Street." This vibrant and bustling street is lined 
+                            with numerous shops and stalls that offer a wide variety of shoes, 
+                            boots, sandals, and leather products at affordable prices. Shoppers 
+                            can find both locally made and imported shoes, and many shops even 
+                            offer custom-made leather products. </p></td>
+                    </tr>
+                    <tr>
+                        <td><h5> <img src="aljabar.png" width="85%" height="auto"> </h5></td>
+                        <td><h6> Al-Jabbar Mosque </h6>
+                        <p class="p3"> Al-Jabar Mosque, Bandung, Indonesia, is a 
+                            prominent religious and architectural landmark. This mosque is 
+                            known for its stunning and modern design, characterized by a 
+                            striking blue dome and intricate geometric patterns. It serves as 
+                            a place of worship for the Muslim community in Bandung and provides 
+                            a tranquil environment for prayer and reflection. Al-Jabar Mosque 
+                            is not only a religious center but also a tourist attraction, 
+                            drawing visitors with its impressive architecture and serene atmosphere. </p></td>
+                    </tr>
+                    <tr>
+                        <td><h5> <img src="geologi.png" width="85%" height="auto"> </h5></td>
+                        <td><h6> Geology Museum </h6>
+                        <p class="p3"> The Geology Museum in Bandung, Indonesia, is a renowned 
+                            institution dedicated to the study and exhibition of Earth's 
+                            geological history. Established in 1928, the museum boasts an extensive 
+                            collection of minerals, fossils, and geological artifacts. It serves 
+                            as an educational hub, offering valuable insights into Indonesia's 
+                            diverse geological landscape and its history, including information 
+                            about volcanoes, earthquakes, and the archipelago's geological 
+                            evolution. </p></td>
+                    </tr>
+                    <tr>
+                        <td><h5> <img src="asiaafrika.png" width="85%" height="auto"> </h5></td>
+                        <td><h6> Asia-Africa Conferention Museum </h6>
+                        <p class="p3"> 
+                            The Asia-Africa Conference Museum in Bandung, Indonesia, is a 
+                            historical landmark commemorating the 1955 Asian-African Conference, 
+                            also known as the Bandung Conference. This museum serves as a 
+                            repository of artifacts, documents, and memorabilia related to the 
+                            conference, which brought together leaders from Asian and African 
+                            nations to discuss issues of common interest, including independence, 
+                            sovereignty, and cooperation. The museum showcases the significance 
+                            of this event in the context of global politics and decolonization. </p></td>
+                    </tr>
+                </table>
+                <pre> </pre>
+                <pre><h3><a href="./food"><button class="button1"> << Culinary </button></a>                                                                                               <a href="./index"><button class="button2"> Back to Spaceship </button></a></h3>
+        </div>
+        </div>
+
+        <script>
+            var myVar;
+            function myFunction() {myVar = setTimeout(showPage, 1500);
+            }
+            function showPage() {document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+            }
+            function openNav() {
+            document.getElementById("myNav").style.height = "100%";
+            }
+            function closeNav() {
+            document.getElementById("myNav").style.height = "0%";
+            }
+        </script>
+
+    </body>
+</html>
